@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// Bootstrap removed — using Tailwind for styling
 import authService from './services/authService';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';

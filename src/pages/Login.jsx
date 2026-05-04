@@ -23,38 +23,34 @@ function Login() {
   };
 
   return (
-    <div className="container py-5">
-      <div className="row justify-content-center">
-        <div className="col-md-5">
-          <div className="card shadow">
-            <div className="card-body p-4">
-              <h3 className="text-center mb-4">🔐 Connexion</h3>
-              {error && <div className="alert alert-danger">{error}</div>}
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label className="form-label">Email</label>
-                  <input type="email" className="form-control"
-                    value={form.email}
-                    onChange={e => setForm({...form, email: e.target.value})}
-                    required />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Mot de passe</label>
-                  <input type="password" className="form-control"
-                    value={form.password}
-                    onChange={e => setForm({...form, password: e.target.value})}
-                    required />
-                </div>
-                <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-                  {loading ? 'Connexion...' : 'Se connecter'}
-                </button>
-              </form>
-              <p className="text-center mt-3">
-                Pas de compte ? <Link to="/register">S'inscrire</Link>
-              </p>
-            </div>
-          </div>
+    <div className="sr-page flex min-h-[70vh] items-center justify-center">
+      <div className="sr-panel w-full max-w-md p-8">
+        <div className="mb-6 text-center">
+          <span className="sr-logo-mark mx-auto mb-3">SR</span>
+          <h1 className="text-2xl font-black text-slate-950">Connexion SaadRent</h1>
+          <p className="mt-1 text-sm text-slate-500">Accédez à vos réservations et à votre espace personnel.</p>
         </div>
+        {error && <div className="text-red-600 bg-red-50 p-2 rounded mb-3">{error}</div>}
+        <form onSubmit={handleSubmit}>
+          <label className="block text-sm font-semibold text-slate-700 mb-1">Email</label>
+          <input type="email" className="sr-input mb-4"
+            value={form.email}
+            onChange={e => setForm({...form, email: e.target.value})}
+            required />
+
+          <label className="block text-sm font-semibold text-slate-700 mb-1">Mot de passe</label>
+          <input type="password" className="sr-input mb-5"
+            value={form.password}
+            onChange={e => setForm({...form, password: e.target.value})}
+            required />
+
+          <button type="submit" className="sr-btn-primary w-full" disabled={loading}>
+            {loading ? 'Connexion...' : 'Se connecter'}
+          </button>
+        </form>
+        <p className="text-center mt-3 text-sm">
+          Pas de compte ? <Link to="/register" className="text-emerald-600">S'inscrire</Link>
+        </p>
       </div>
     </div>
   );

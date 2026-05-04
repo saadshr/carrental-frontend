@@ -9,9 +9,12 @@ const authService = {
     return res;
   },
   logout: async () => {
-    await API.post('/logout');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    try {
+      await API.post('/logout');
+    } finally {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    }
   },
   getMe: () => API.get('/me'),
   isLoggedIn: () => !!localStorage.getItem('token'),
