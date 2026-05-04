@@ -35,7 +35,7 @@ function CarCard({ car }) {
 
         <div className="p-4">
           <h5 className="text-lg font-semibold text-slate-800">{car.brand} {car.model}</h5>
-          <p className="text-sm text-slate-500 mt-1 line-clamp-2">{car.description}</p>
+          <p className="text-sm text-slate-500 mt-1 max-h-10 overflow-hidden">{car.description}</p>
           <div className="mt-3 flex items-center justify-between">
             <div className="text-sm text-slate-600">{car.seats} places</div>
             <div className="text-lg font-bold text-emerald-600">{car.price_per_day} DH</div>
