@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# 🚗 Car Rental · Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React 19](https://img.shields.io/badge/React-19-087EA4?style=for-the-badge&logo=react&logoColor=white)
+![React Router 7](https://img.shields.io/badge/React%20Router-7-B52A40?style=for-the-badge&logo=reactrouter&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-036982?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![Node.js 20+](https://img.shields.io/badge/Node.js-20%2B-306B32?style=for-the-badge&logo=nodedotjs&logoColor=white)
 
-## Available Scripts
+[Démarrage](#lancer-en-local) · [Pages](#pages) · [Tests et build](#vérification-et-build)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+Interface React pour parcourir un catalogue de voitures, créer et gérer des réservations, et administrer la flotte. L'interface utilise React 19, React Router 7, Tailwind CSS et Axios.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Les visiteurs peuvent consulter le catalogue et la fiche de chaque voiture.
+- Les utilisateurs connectés peuvent réserver une voiture, suivre leurs réservations et annuler celles qui le permettent.
+- Les administrateurs peuvent gérer les voitures, confirmer des réservations et consulter les indicateurs globaux.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Lancer en local
 
-### `npm test`
+Installer Node.js 20 ou plus récent avec npm, puis démarrer l'API Laravel. [Instructions du backend](https://github.com/saadshr/carrental-backend)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Depuis le dossier qui contient les dépôts, cloner le frontend si nécessaire, puis lancer les commandes suivantes.
 
-### `npm run build`
+```powershell
+git clone https://github.com/saadshr/carrental-frontend.git
+Set-Location carrental-frontend
+npm ci
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ouvrir [localhost:3000](http://localhost:3000). Le frontend utilise par défaut `http://127.0.0.1:8000/api`. Pour changer cette adresse, créer un fichier `.env.local` à la racine du frontend avec la valeur voulue, puis redémarrer `npm start`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```dotenv
+REACT_APP_API_URL=http://127.0.0.1:8000/api
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Si le frontend est hébergé sur un autre domaine, ajouter son origine à la configuration CORS de l'API Laravel. Le client Axios joint le JWT aux requêtes authentifiées sous la forme `Authorization: Bearer <token>`.
 
-### `npm run eject`
+## Pages
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Catalogue et fiches des voitures · `/` et `/cars/:id`
+- Connexion et inscription · `/login` et `/register`
+- Tableau de bord et réservations personnelles · `/dashboard` et `/reservations`
+- Administration de la flotte et des réservations · `/admin`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Les écrans se trouvent dans `src/pages/` et les appels HTTP dans `src/services/`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Vérification et build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `npm run build` génère les fichiers statiques dans `build/`. Configurer l'hébergement pour servir `index.html` lors de l'ouverture directe d'une route React.
+- `npm test` lance Jest. Le test actuellement versionné dans `src/App.test.js` cible encore l'écran d'exemple de Create React App et doit être adapté à l'application.
