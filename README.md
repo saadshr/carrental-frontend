@@ -29,7 +29,7 @@ npm ci
 npm start
 ```
 
-Ouvrir [localhost:3000](http://localhost:3000). Le frontend utilise par défaut `http://127.0.0.1:8000/api`. Pour changer cette adresse, créer un fichier `.env.local` à la racine du frontend avec la valeur voulue, puis redémarrer `npm start`.
+Ouvrir [localhost:3000](http://localhost:3000). Le frontend utilise par défaut `http://127.0.0.1:8000/api`. port (8000) Pour changer cette adresse, créer un fichier `.env.local` à la racine du frontend avec la valeur voulue, puis redémarrer `npm start`.
 
 ```dotenv
 REACT_APP_API_URL=http://127.0.0.1:8000/api
